@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Skill Based Job Portal</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4facfe, #6a5acd);
+            color: #333;
+        }
+
+        /* Navigation */
+
+        nav {
+            background: white;
+            padding: 18px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4f46e5;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 25px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #4f46e5;
+        }
+
+        /* Main section */
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 14px 30px;
+            margin: 8px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .register {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .login {
+            background: white;
+            color: #4f46e5;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+        }
+
+     
+        /* Features */
+
+        .features {
+            background: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .features h2 {
+            color: #4f46e5;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .card {
+            width: 220px;
+            padding: 25px;
+            background: #f4f4ff;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px #ccc;
+        }
+
+        .card h3 {
+            color: #4f46e5;
+        }
+
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- Navigation -->
+
+<nav>
+
+    <div class="logo">
+        JobPortal
+    </div>
+
+    <div>
+
+        <a href="index.html">Home</a>
+
+        <a href="register.jsp">Register</a>
+
+        <a href="login.jsp">Login</a>
+
+    </div>
+
+</nav>
+
+
+<!-- Hero Section -->
+
+<section class="hero">
+
+    <h1>Skill Based Job Portal</h1>
+
+    <p>
+        Find jobs that match your skills.
+    </p>
+
+    <a href="register.jsp"
+       class="button register">
+        Register Now
+    </a>
+
+    <a href="login.jsp"
+       class="button login">
+        Login
+    </a>
+
+</section>
+
+
+<!-- Interactive Skill Search -->
+
+
+
+<!-- Features -->
+
+<section class="features">
+
+    <h2>Why Use JobPortal?</h2>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <h3>Skill Matching</h3>
+
+            <p>
+                Find jobs according to your skills.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Easy Registration</h3>
+
+            <p>
+                Create your candidate account easily.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Job Search</h3>
+
+            <p>
+                View jobs available for your skills.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Quick Login</h3>
+
+            <p>
+                Login and view matching jobs.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Footer -->
+
+<footer>
+
+    Skill Based Job Portal
+
+</footer>
+
+
+<script>
+
+    function checkSkills() {
+
+        var skills =
+            document.getElementById("skillInput").value;
+
+        var result =
+            document.getElementById("result");
+
+        if (skills.trim() === "") {
+
+            result.innerHTML =
+                "Please enter your skills.";
+
+        } else {
+
+            result.innerHTML =
+                "Great! Your skills are: " + skills +
+                ". Register to find matching jobs.";
+
+        }
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
