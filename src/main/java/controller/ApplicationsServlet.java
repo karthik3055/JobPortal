@@ -23,16 +23,15 @@ public class ApplicationsServlet extends HttpServlet {
 
         try {
 
-            Connection con =
-                DBConnection.getConnection();
+            Connection con = DBConnection.getConnection();
 
             String sql =
-                "SELECT users.name, users.email, "
-                + "jobs.title, jobs.company, "
-                + "applications.applied_date "
-                + "FROM applications "
-                + "JOIN users ON applications.user_id = users.id "
-                + "JOIN jobs ON applications.job_id = jobs.id";
+                "SELECT users.name, users.email, " +
+                "jobs.title, jobs.company, " +
+                "applications.applied_date " +
+                "FROM applications " +
+                "JOIN users ON applications.user_id = users.id " +
+                "JOIN jobs ON applications.job_id = jobs.id";
 
             PreparedStatement ps =
                 con.prepareStatement(sql);
@@ -40,10 +39,7 @@ public class ApplicationsServlet extends HttpServlet {
             ResultSet rs =
                 ps.executeQuery();
 
-            request.setAttribute(
-                "result",
-                rs
-            );
+            request.setAttribute("result", rs);
 
             request.getRequestDispatcher(
                 "applications.jsp"
@@ -52,6 +48,8 @@ public class ApplicationsServlet extends HttpServlet {
         } catch (Exception e) {
 
             e.printStackTrace();
+
+            response.sendRedirect("error.jsp");
         }
     }
 }

@@ -1,50 +1,97 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 
-    <title>Register</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register - JobPortal</title>
 
     <style>
 
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial;
-            background: linear-gradient(135deg, #43cea2, #185a9d);
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7ff;
+            color: #222;
+        }
+
+        nav {
+            background: white;
+            padding: 15px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px #ddd;
+        }
+
+        .logo {
+            color: #4f46e5;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
         }
 
         .box {
-            width: 400px;
-            margin: 70px auto;
+            width: 90%;
+            max-width: 420px;
+            margin: 50px auto;
             padding: 30px;
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px #333;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px #ddd;
         }
 
         h2 {
             text-align: center;
-            color: #185a9d;
+            color: #4f46e5;
+        }
+
+        label {
+            display: block;
+            margin-top: 13px;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
 
         input {
-            width: 95%;
-            padding: 10px;
-            margin: 8px 0;
+            width: 100%;
+            padding: 11px;
             border: 1px solid #ccc;
-            border-radius: 6px;
+            border-radius: 7px;
         }
 
         input[type="submit"] {
-            width: 100%;
-            background: #185a9d;
+            margin-top: 20px;
+            background: #4f46e5;
             color: white;
             border: none;
+            font-weight: bold;
             cursor: pointer;
-            font-size: 16px;
         }
 
         input[type="submit"]:hover {
-            background: #43cea2;
+            background: #3730a3;
+        }
+
+        p {
+            text-align: center;
+            color: #64748b;
+        }
+
+        p a {
+            color: #4f46e5;
+            font-weight: bold;
         }
 
     </style>
@@ -53,32 +100,66 @@
 
 <body>
 
+<nav>
+
+    <a href="index.html" class="logo">
+        JobPortal
+    </a>
+
+    <a href="index.html">
+        Home
+    </a>
+
+</nav>
+
+
 <div class="box">
 
-    <h2> Candidate Registration</h2>
+    <h2>Create Account</h2>
 
     <form action="register" method="post">
 
-        Name:
-        <input type="text" name="name" required>
+        <label>Name</label>
 
-        Email:
-        <input type="email" name="email" required>
+        <input
+            type="text"
+            name="name"
+            required>
 
-        Password:
-        <input type="password" name="password" required>
 
-        Skills:
-        <input type="text"
-               name="skills"
-               placeholder="Java,SQL,HTML"
-               required>
+        <label>Email</label>
 
-        <input type="submit" value="Register">
+        <input
+            type="email"
+            name="email"
+            required>
+
+
+        <label>Password</label>
+
+        <input
+            type="password"
+            name="password"
+            required>
+
+
+        <label>Skills</label>
+
+        <input
+            type="text"
+            name="skills"
+            placeholder="Java, SQL, HTML"
+            required>
+
+
+        <input
+            type="submit"
+            value="Register">
 
     </form>
 
-    <p style="text-align:center;">
+
+    <p>
         Already registered?
         <a href="login.jsp">Login</a>
     </p>
@@ -86,5 +167,4 @@
 </div>
 
 </body>
-
 </html>

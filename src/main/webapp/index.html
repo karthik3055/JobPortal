@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Skill Based Job Portal</title>
+    <title>JobPortal</title>
 
     <style>
-
         * {
             box-sizing: border-box;
         }
@@ -16,30 +14,31 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #4facfe, #6a5acd);
-            color: #333;
+            background: #f5f7ff;
+            color: #222;
         }
 
-        /* Navigation */
-
+        /* Navbar */
         nav {
             background: white;
-            padding: 18px 50px;
+            padding: 15px 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 8px #ddd;
         }
 
         .logo {
+            color: #4f46e5;
             font-size: 24px;
             font-weight: bold;
-            color: #4f46e5;
+            text-decoration: none;
         }
 
         nav a {
             text-decoration: none;
             color: #333;
-            margin-left: 25px;
+            margin-left: 20px;
             font-weight: bold;
         }
 
@@ -47,242 +46,242 @@
             color: #4f46e5;
         }
 
-        /* Main section */
-
+        /* Hero */
         .hero {
             text-align: center;
-            padding: 80px 20px;
-            color: white;
+            padding: 90px 20px;
+            background: #eef2ff;
         }
 
         .hero h1 {
             font-size: 45px;
+            color: #172033;
             margin-bottom: 15px;
         }
 
+        .hero h1 span {
+            color: #4f46e5;
+        }
+
         .hero p {
-            font-size: 20px;
+            color: #64748b;
+            font-size: 19px;
             margin-bottom: 30px;
         }
 
         .button {
             display: inline-block;
-            padding: 14px 30px;
-            margin: 8px;
+            padding: 13px 25px;
+            margin: 5px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 16px;
         }
 
         .register {
-            background: #ff6b6b;
+            background: #4f46e5;
             color: white;
         }
 
         .login {
             background: white;
             color: #4f46e5;
+            border: 1px solid #4f46e5;
         }
 
         .button:hover {
-            transform: scale(1.05);
+            opacity: 0.85;
         }
 
-     
         /* Features */
-
         .features {
             background: white;
-            padding: 50px 20px;
+            padding: 60px 20px;
             text-align: center;
         }
 
         .features h2 {
-            color: #4f46e5;
+            color: #172033;
+            font-size: 30px;
         }
 
         .cards {
+            max-width: 1000px;
+            margin: 30px auto;
             display: flex;
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
-            margin-top: 30px;
         }
 
         .card {
             width: 220px;
             padding: 25px;
-            background: #f4f4ff;
+            background: #f8f9ff;
+            border: 1px solid #e2e8f0;
             border-radius: 12px;
-            transition: 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 20px #ccc;
         }
 
         .card h3 {
             color: #4f46e5;
         }
 
+        .card p {
+            color: #64748b;
+        }
+
+        /* Footer */
         footer {
-            background: #222;
+            background: #172033;
             color: white;
             text-align: center;
             padding: 20px;
         }
 
+        /* Mobile */
+        @media (max-width: 600px) {
+
+            nav {
+                padding: 15px 20px;
+            }
+
+            nav a {
+                margin-left: 8px;
+                font-size: 13px;
+            }
+
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .button {
+                display: block;
+                margin: 10px auto;
+                max-width: 250px;
+            }
+
+            .card {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
     </style>
-
 </head>
-
 
 <body>
 
+    <!-- Navbar -->
 
-<!-- Navigation -->
+    <nav>
 
-<nav>
+        <a href="index.html" class="logo">
+            JobPortal
+        </a>
 
-    <div class="logo">
-        JobPortal
-    </div>
+        <div>
+            <a href="index.html">Home</a>
+            <a href="register.jsp">Register</a>
+            <a href="login.jsp">Login</a>
+        </div>
 
-    <div>
-
-        <a href="index.html">Home</a>
-
-        <a href="register.jsp">Register</a>
-
-        <a href="login.jsp">Login</a>
-
-    </div>
-
-</nav>
+    </nav>
 
 
-<!-- Hero Section -->
+    <!-- Hero -->
 
-<section class="hero">
+    <section class="hero">
 
-    <h1>Skill Based Job Portal</h1>
+        <h1>
+            Find Your
+            <span>Dream Job</span>
+        </h1>
 
-    <p>
-        Find jobs that match your skills.
-    </p>
+        <p>
+            Find jobs that match your skills and build your career.
+        </p>
 
-    <a href="register.jsp"
-       class="button register">
-        Register Now
-    </a>
+        <a href="register.jsp" class="button register">
+            Register Now
+        </a>
 
-    <a href="login.jsp"
-       class="button login">
-        Login
-    </a>
+        <a href="login.jsp" class="button login">
+            Login
+        </a>
 
-</section>
-
-
-<!-- Interactive Skill Search -->
+    </section>
 
 
+    <!-- Features -->
 
-<!-- Features -->
+    <section class="features">
 
-<section class="features">
+        <h2>Why Use JobPortal?</h2>
 
-    <h2>Why Use JobPortal?</h2>
+        <div class="cards">
 
-    <div class="cards">
+            <div class="card">
 
-        <div class="card">
+                <h3>Skill Matching</h3>
 
-            <h3>Skill Matching</h3>
+                <p>
+                    Find jobs according to your skills.
+                </p>
 
-            <p>
-                Find jobs according to your skills.
-            </p>
+            </div>
+
+
+            <div class="card">
+
+                <h3>Easy Registration</h3>
+
+                <p>
+                    Create your candidate account easily.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Job Search</h3>
+
+                <p>
+                    View jobs available for your skills.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Easy Apply</h3>
+
+                <p>
+                    Apply for suitable jobs quickly.
+                </p>
+
+            </div>
 
         </div>
 
-
-        <div class="card">
-
-            <h3>Easy Registration</h3>
-
-            <p>
-                Create your candidate account easily.
-            </p>
-
-        </div>
+    </section>
 
 
-        <div class="card">
+    <!-- Footer -->
 
-            <h3>Job Search</h3>
+    <footer>
 
-            <p>
-                View jobs available for your skills.
-            </p>
+        Skill Based Job Portal © 2026
 
-        </div>
-
-
-        <div class="card">
-
-            <h3>Quick Login</h3>
-
-            <p>
-                Login and view matching jobs.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- Footer -->
-
-<footer>
-
-    Skill Based Job Portal
-
-</footer>
-
-
-<script>
-
-    function checkSkills() {
-
-        var skills =
-            document.getElementById("skillInput").value;
-
-        var result =
-            document.getElementById("result");
-
-        if (skills.trim() === "") {
-
-            result.innerHTML =
-                "Please enter your skills.";
-
-        } else {
-
-            result.innerHTML =
-                "Great! Your skills are: " + skills +
-                ". Register to find matching jobs.";
-
-        }
-
-    }
-
-</script>
-
+    </footer>
 
 </body>
-
 </html>

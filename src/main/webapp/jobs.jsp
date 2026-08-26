@@ -2,14 +2,15 @@
 <%@ page import="model.Job" %>
 
 <!DOCTYPE html>
-
 <html>
-
 <head>
 
     <meta charset="UTF-8">
 
-    <title>Recommended Jobs</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Jobs - JobPortal</title>
 
     <style>
 
@@ -20,85 +21,61 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: #f5f7ff;
+            color: #222;
         }
 
-        /* Header */
-
-        .header {
+        nav {
             background: white;
-            padding: 20px 50px;
+            padding: 15px 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 8px #ddd;
         }
 
         .logo {
-            font-size: 25px;
-            font-weight: bold;
             color: #4f46e5;
-        }
-
-        .home {
+            font-size: 24px;
+            font-weight: bold;
             text-decoration: none;
-            background: #4f46e5;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 6px;
         }
 
-        .home:hover {
-            background: #3730a3;
+        nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
         }
-
-        /* Main */
 
         .container {
             width: 90%;
             max-width: 1100px;
-            margin: 40px auto;
+            margin: 45px auto;
         }
 
-        .title {
+        h1 {
             text-align: center;
-            color: white;
-            margin-bottom: 30px;
+            color: #4f46e5;
         }
 
-        .title h1 {
-            font-size: 38px;
+        .subtitle {
+            text-align: center;
+            color: #64748b;
         }
-
-        .title p {
-            font-size: 18px;
-        }
-
-        /* Job Cards */
 
         .jobs {
             display: grid;
             grid-template-columns:
-                repeat(auto-fit, minmax(300px, 1fr));
-
-            gap: 25px;
+                repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
         }
 
         .job-card {
             background: white;
             padding: 25px;
-            border-radius: 15px;
-
-            box-shadow:
-                0 8px 20px rgba(0,0,0,0.2);
-
-            transition: 0.3s;
-        }
-
-        .job-card:hover {
-            transform: translateY(-8px);
-
-            box-shadow:
-                0 15px 30px rgba(0,0,0,0.3);
+            border-radius: 12px;
+            box-shadow: 0 5px 20px #ddd;
         }
 
         .job-card h2 {
@@ -107,33 +84,29 @@
         }
 
         .company {
-            color: #666;
-            font-size: 17px;
             font-weight: bold;
+            color: #555;
         }
 
         .skills {
-            background: #f1f5ff;
-            padding: 12px;
-            border-radius: 8px;
             margin-top: 15px;
-            color: #444;
+            padding: 12px;
+            background: #f1f3ff;
+            border-radius: 8px;
+            color: #555;
         }
 
-        /* Match */
-
         .match {
-            margin-top: 18px;
-            padding: 10px;
-            border-radius: 8px;
+            margin-top: 15px;
+            padding: 9px;
             text-align: center;
-            font-size: 20px;
+            border-radius: 7px;
             font-weight: bold;
         }
 
         .high {
-            background: #d1fae5;
-            color: #047857;
+            background: #dcfce7;
+            color: #15803d;
         }
 
         .medium {
@@ -146,20 +119,15 @@
             color: #dc2626;
         }
 
-        /* Apply button */
-
         .apply {
             width: 100%;
             margin-top: 15px;
-            padding: 12px;
-
+            padding: 11px;
             background: #4f46e5;
             color: white;
-
             border: none;
-            border-radius: 8px;
-
-            font-size: 16px;
+            border-radius: 7px;
+            font-weight: bold;
             cursor: pointer;
         }
 
@@ -167,62 +135,59 @@
             background: #3730a3;
         }
 
-        /* No jobs */
-
         .no-jobs {
             background: white;
             padding: 30px;
             text-align: center;
-            border-radius: 10px;
+            border-radius: 12px;
         }
 
-        /* Footer */
-
         footer {
-            background: #222;
+            margin-top: 50px;
+            background: #172033;
             color: white;
             text-align: center;
             padding: 20px;
-            margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                width: 92%;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
         }
 
     </style>
 
 </head>
 
-
 <body>
 
+<nav>
 
-<!-- Header -->
-
-<div class="header">
-
-    <div class="logo">
+    <a href="index.html" class="logo">
         JobPortal
-    </div>
+    </a>
 
-    <a href="index.html" class="home">
+    <a href="index.html">
         Home
     </a>
 
-</div>
+</nav>
 
-
-<!-- Main -->
 
 <div class="container">
 
+    <h1>Recommended Jobs</h1>
 
-    <div class="title">
-
-        <h1>Recommended Jobs</h1>
-
-        <p>
-            Jobs matched according to your skills
-        </p>
-
-    </div>
+    <p class="subtitle">
+        Jobs matched according to your skills
+    </p>
 
 
     <div class="jobs">
@@ -234,23 +199,20 @@ ArrayList<Job> jobs =
 
 if (jobs != null && !jobs.isEmpty()) {
 
-    for(Job job : jobs) {
+    for (Job job : jobs) {
 
         int match = job.getMatch();
 
         String matchClass = "low";
 
-        if(match >= 70) {
+        if (match >= 70) {
             matchClass = "high";
         }
-        else if(match >= 40) {
+        else if (match >= 40) {
             matchClass = "medium";
         }
 
 %>
-
-
-        <!-- Job Card -->
 
         <div class="job-card">
 
@@ -264,16 +226,11 @@ if (jobs != null && !jobs.isEmpty()) {
 
             <div class="skills">
 
-                <strong>
-                    Required Skills
-                </strong>
-
-                <br><br>
+                <strong>Skills:</strong>
 
                 <%= job.getSkills() %>
 
             </div>
-
 
             <div class="match <%= matchClass %>">
 
@@ -283,23 +240,24 @@ if (jobs != null && !jobs.isEmpty()) {
             </div>
 
 
-    <form action="apply" method="post">
+            <form action="apply" method="post">
 
-    <input type="hidden"
-           name="jobId"
-           value="<%= job.getId() %>">
+                <input
+                    type="hidden"
+                    name="jobId"
+                    value="<%= job.getId() %>">
 
-    <button type="submit"
-            class="apply">
+                <button
+                    type="submit"
+                    class="apply">
 
-        Apply Now
+                    Apply Now
 
-    </button>
+                </button>
 
-	</form>
+            </form>
 
         </div>
-
 
 <%
 
@@ -308,7 +266,6 @@ if (jobs != null && !jobs.isEmpty()) {
 } else {
 
 %>
-
 
         <div class="no-jobs">
 
@@ -319,7 +276,6 @@ if (jobs != null && !jobs.isEmpty()) {
             </p>
 
         </div>
-
 
 <%
 
@@ -333,25 +289,8 @@ if (jobs != null && !jobs.isEmpty()) {
 
 
 <footer>
-
-    Skill Based Job Portal
-
+    Skill Based Job Portal © 2026
 </footer>
 
-
-<script>
-
-function applyJob(jobName) {
-
-    alert(
-        "Application started for " + jobName
-    );
-
-}
-
-</script>
-
-
 </body>
-
 </html>
