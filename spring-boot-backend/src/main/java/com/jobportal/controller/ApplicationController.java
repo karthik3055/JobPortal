@@ -1,16 +1,19 @@
 package com.jobportal.controller;
 
+import com.jobportal.dto.ApplicationResponse;
 import com.jobportal.model.Application;
 import com.jobportal.model.Job;
 import com.jobportal.model.User;
-import com.jobportal.repository.*;
+import com.jobportal.repository.ApplicationRepository;
+import com.jobportal.repository.JobRepository;
+import com.jobportal.repository.UserRepository;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/applications")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:5173")
 public class ApplicationController {
     private final ApplicationRepository applications;
     private final UserRepository users;
@@ -44,7 +47,16 @@ public class ApplicationController {
     }
 
     @GetMapping
-    public List<Application> getApplications() {
-        return applications.findAllByOrderByAppliedDateDesc();
+    public List<ApplicationResponse> getApplications() {
+        return applications.findAllByOrderByAppliedDateDesc().stream()
+            .map(application -> new ApplicationResponse(
+                application.getId(),
+                application.getUser().getName(),
+                application.getUser().getEmail(),
+                application.getJob().getTitle(),
+                application.getJob().getCompany(),
+                application.getAppliedDate()
+            ))
+            .toList();
     }
 }

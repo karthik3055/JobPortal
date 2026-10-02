@@ -77,7 +77,8 @@ function App() {
 
   async function showApplications() {
     try {
-      setApplications(await getApplications());
+      const data = await getApplications();
+      setApplications(data);
       setPage("applications");
     } catch (error) {
       setMessage(error.message);
@@ -227,9 +228,9 @@ function App() {
                   <tbody>
                     {applications.map((application) => (
                       <tr key={application.id}>
-                        <td>{application.user.name}</td>
-                        <td>{application.job.title}</td>
-                        <td>{application.job.company}</td>
+                        <td>{application.name}</td>
+                        <td>{application.title}</td>
+                        <td>{application.company}</td>
                         <td>{new Date(application.appliedDate).toLocaleString()}</td>
                       </tr>
                     ))}
