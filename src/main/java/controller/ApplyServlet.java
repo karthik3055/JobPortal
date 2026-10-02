@@ -21,38 +21,37 @@ public class ApplyServlet extends HttpServlet {
             HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
 
-        int userId =
-            (int) session.getAttribute("userId");
+        if (session == null || session.getAttribute("userId") == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
 
-        int jobId =
-            Integer.parseInt(
-                request.getParameter("jobId")
-            );
+        int userId = (int) session.getAttribute("userId");
+        int jobId;
 
         try {
+            jobId = Integer.parseInt(request.getParameter("jobId"));
+        } catch (NumberFormatException e) {
+            response.sendRedirect("error.jsp");
+            return;
+        }
 
-            Connection con =
-                DBConnection.getConnection();
+        String sql = "INSERT INTO applications(user_id,job_id) VALUES(?,?)";
 
-            String sql =
-                "INSERT INTO applications(user_id,job_id) "
-                + "VALUES(?,?)";
-
-            PreparedStatement ps =
-                con.prepareStatement(sql);
-
+        try (
+            Connection con = DBConnection.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql)
+        ) {
             ps.setInt(1, userId);
             ps.setInt(2, jobId);
-
             ps.executeUpdate();
 
             response.sendRedirect("success.jsp");
-
         } catch (Exception e) {
-
             e.printStackTrace();
+            response.sendRedirect("error.jsp");
         }
     }
 }

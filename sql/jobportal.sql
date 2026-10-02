@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS applications (
     user_id INT NOT NULL,
     job_id INT NOT NULL,
     applied_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (user_id, job_id),
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (job_id) REFERENCES jobs(id)
 );

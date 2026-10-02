@@ -25,15 +25,12 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String skills = request.getParameter("skills");
 
-        try {
+        String sql = "INSERT INTO users(name,email,password,skills) VALUES(?,?,?,?)";
 
+        try (
             Connection con = DBConnection.getConnection();
-
-            String sql =
-                "INSERT INTO users(name,email,password,skills) VALUES(?,?,?,?)";
-
-            PreparedStatement ps = con.prepareStatement(sql);
-
+            PreparedStatement ps = con.prepareStatement(sql)
+        ) {
             ps.setString(1, name);
             ps.setString(2, email);
             ps.setString(3, password);
@@ -42,9 +39,9 @@ public class RegisterServlet extends HttpServlet {
             ps.executeUpdate();
 
             response.sendRedirect("login.jsp");
-
         } catch (Exception e) {
             e.printStackTrace();
+            response.sendRedirect("error.jsp");
         }
     }
 }
