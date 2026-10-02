@@ -1,60 +1,151 @@
 # Job Portal
 
-A Java web application that allows users to register, log in, view job listings, and find jobs based on their skills.
+A full-stack Java job portal that connects a React frontend with a Spring Boot REST API and MySQL database. The repository also preserves the original Servlet/JSP implementation.
 
 ## Features
 
-- User registration
-- User login
-- User skill storage
-- Job listing
+- User registration and login
 - Skill-based job matching
-- Job application handling
-- Application viewing
-- MySQL database connectivity
+- Job listing
+- Job applications
+- Application history
+- REST API
+- React web interface
+- MySQL database
+- Legacy Servlet/JSP implementation
+
+## Architecture
+
+```text
+React + Vite
+      |
+      v
+Spring Boot REST API
+      |
+      v
+Spring Data JPA
+      |
+      v
+MySQL
+```
+
+The original Java Servlet/JSP application remains available under `src/`.
 
 ## Technology Stack
 
+### Modern Full Stack
+
 - Java 17
+- Spring Boot
+- Spring Web
+- Spring Data JPA
+- MySQL
+- Maven
+- React
+- Vite
+- JavaScript
+- CSS
+
+### Original Implementation
+
 - Jakarta Servlet 6
 - JDBC
-- MySQL
 - JSP
 - HTML
 - CSS
 - Maven
-- WAR packaging
 
 ## Project Structure
 
 ```text
 JobPortal/
+├── react-frontend/
+│   ├── src/
+│   ├── package.json
+│   └── README.md
+├── spring-boot-backend/
+│   ├── src/
+│   ├── pom.xml
+│   └── README.md
+├── sql/
+│   └── jobportal.sql
 ├── src/
 │   └── main/
 │       ├── java/
-│       │   ├── controller/
-│       │   ├── dao/
-│       │   └── model/
 │       └── webapp/
 ├── pom.xml
-└── Dockerfile
+└── README.md
 ```
 
-## Main Components
+## Spring Boot API
 
-### Controllers
+| Method | Endpoint | Purpose |
+|---|---|---|
+| POST | `/api/auth/register` | Register a user |
+| POST | `/api/auth/login` | Authenticate a user |
+| GET | `/api/jobs?userId=1` | Get jobs with skill match |
+| POST | `/api/applications?userId=1&jobId=1` | Apply for a job |
+| GET | `/api/applications` | View applications |
 
-- `RegisterServlet` handles user registration.
-- `LoginServlet` handles user login.
-- `JobServlet` loads jobs and calculates skill match percentage.
-- `ApplyServlet` handles job applications.
-- `ApplicationsServlet` displays submitted applications.
+## Database
 
-### Database
+The MySQL schema is available at:
 
-The application uses MySQL through JDBC.
+`sql/jobportal.sql`
 
-Database connection values are read from environment variables:
+It creates:
+
+- `users`
+- `jobs`
+- `applications`
+
+The application table prevents duplicate applications for the same user and job.
+
+## Run the Full-Stack Version
+
+### 1. Create the database
+
+Run `sql/jobportal.sql` in MySQL.
+
+### 2. Start the Spring Boot backend
+
+From `spring-boot-backend/`:
+
+```bash
+mvn spring-boot:run
+```
+
+The API runs on:
+
+`http://localhost:8080`
+
+### 3. Start the React frontend
+
+From `react-frontend/`:
+
+```bash
+npm install
+npm run dev
+```
+
+The Vite development server runs on:
+
+`http://localhost:5173`
+
+## Database Configuration
+
+The Spring Boot backend currently expects a local MySQL database:
+
+```text
+Database: jobportal
+Username: root
+Password: empty by default
+Port: 3306
+```
+
+Update `spring-boot-backend/src/main/resources/application.properties` for your local MySQL credentials.
+
+The original Servlet/JSP implementation uses:
 
 ```text
 DB_HOST
@@ -64,66 +155,16 @@ DB_USER
 DB_PASSWORD
 ```
 
-Do not place database passwords directly in the source code.
-
 ## Skill Matching
 
-The job matching logic compares the skills stored for the logged-in user with the skills required by each job.
-
-For each job, the application calculates:
+The application compares a user's stored skills with the skills required by each job.
 
 ```text
 matched skills / required skills × 100
 ```
 
-The resulting percentage is displayed with the job information.
+The resulting percentage is returned by the API and displayed in the React interface.
 
-## Running the Project
+## Project Focus
 
-### 1. Configure MySQL
-
-Create the required database and tables used by the application.
-
-The application expects the database connection values to be available as environment variables.
-
-### 2. Configure the environment
-
-Example:
-
-```text
-DB_HOST=localhost
-DB_PORT=3306
-DB_NAME=jobportal
-DB_USER=root
-DB_PASSWORD=your_password
-```
-
-Use your own MySQL credentials.
-
-### 3. Build
-
-Run:
-
-```bash
-mvn clean package
-```
-
-This creates:
-
-```text
-target/JobPortal.war
-```
-
-### 4. Deploy
-
-Deploy the WAR file to a Jakarta Servlet 6 compatible application server.
-
-## Current Scope
-
-The repository currently uses Servlets, JSP, JDBC, and MySQL. Spring Boot and React are not part of the current implementation.
-
-Future development can move the application toward a Spring Boot REST backend and React frontend while keeping the existing job-portal functionality.
-
-## Focus
-
-**Java · JDBC · MySQL · JSP · Jakarta Servlet · Maven · Web Application**
+**Java · Spring Boot · React · REST API · JPA · MySQL · SQL · Full Stack Development**
